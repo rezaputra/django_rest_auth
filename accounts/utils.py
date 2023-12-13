@@ -14,7 +14,6 @@ def generateOtp():
 def sent_code_to_user(email):
     Subject = 'One time passcode for email verification'
     otp_code = generateOtp()
-    print(otp_code)
     user=User.objects.get(email=email)
     current_site = 'myAuth.com'
     email_body = f'Hi, Thansk for signing up on {current_site}, please verify your email \n one time passcode {otp_code}'
@@ -24,3 +23,13 @@ def sent_code_to_user(email):
 
     send_email = EmailMessage(subject=Subject, body=email_body, from_email=from_email, to=[user])
     send_email.send(fail_silently=True)
+
+
+def send_normal_email(data):
+    email = EmailMessage(
+        subject = data['email_subject'],
+        body = data['email_body'],
+        from_email = settings.EMAIL_HOST_USER,
+        to = [data['to_email']]
+    )
+    email.send()
