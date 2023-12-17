@@ -92,6 +92,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'django_rest_auth.wsgi.application'
 
+CORS_ALLOW_ALL_ORIGINS = True
+CSRF_TRUSTED_ORIGINS = [
+  "http://127.0.0.1:3000/"
+]
+
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
@@ -108,7 +113,7 @@ AUTH_USER_MODEL = 'accounts.User'
 
 
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=5),
+    "ACCESS_TOKEN_LIFETIME": timedelta(seconds=10),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
     "AUTH_HEADER_TYPES": ("Bearer",),
 }
